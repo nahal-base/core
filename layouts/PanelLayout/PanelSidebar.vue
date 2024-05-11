@@ -3,13 +3,14 @@
     <div class="logo h-14 bg-blue-500 flex justify-center items-center gap-x-2">
       <img class="h-10 w-10 object-contain" src="/logo-2.png" alt="" srcset="" />
       <span v-if="!collapsed" class="text-white">سامانه نهال</span>
+      {{  }}
     </div>
 
     <Menu
       class="h-full"
       v-model:selectedKeys="selectedKeys"
       mode="inline"
-      :items="menus.items"
+      :items="menus.items.value"
       @click="handleClick"
       @openChange="router.push({ name: selectedKeys[0] })"
     />
@@ -20,7 +21,7 @@ import { onMounted, ref } from 'vue'
 import type { MenuProps } from 'ant-design-vue'
 import { Menu, LayoutSider } from 'ant-design-vue/es'
 import { useRoute, useRouter } from 'vue-router'
-import {useMenus} from '../../menus'
+import { useMenus } from '@/core/menus'
 
 const menus = useMenus()
 
@@ -39,8 +40,6 @@ const router = useRouter()
 const handleClick: MenuProps['onClick'] = (e) => {
   router.push({ name: `${e.key}` })
 }
-
-
 </script>
 <style lang="less">
 .ant-layout-sider-trigger {
