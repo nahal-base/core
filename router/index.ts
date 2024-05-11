@@ -38,12 +38,12 @@ const router = createRouter({
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.name !== 'TheAuthLogin' && !isAuthenticated()) {
-//     next({ name: 'TheAuthLogin' })
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'TheAuthLogin' && !isAuthenticated()) {
+    next({ name: 'TheAuthLogin' })
+  } else {
+    next()
+  }
+})
 
 export default router
