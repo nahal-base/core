@@ -14,14 +14,17 @@ export const useMenus = () => {
 
   const generateMenuItem = (item: MenuItem) => {
     const menuItem = {
-      key: item,
+      key: item.label,
       label: t(item.label),
       icon: () => h(Icon, { icon: item.icon }),
     };
     if (item.children) {
-      menuItem["children"] = item.children.map((child: MenuItem) =>
-        generateMenuItem(child)
-      );
+      menuItem["children"] = item.children.map((child: MenuItem) => {
+        return {
+          key: child.label,
+          label: t(child.label),
+        };
+      });
     }
     return menuItem;
   };
