@@ -12,12 +12,13 @@ interface ConfigModel {
 }
 
 class AxiosService {
-  private baseUrl: string
+  private readonly baseUrl: string
   private controller: AbortController
   private instance: AxiosInstance
   private auth: Ref<string>
 
   constructor() {
+    // @ts-ignore
     this.baseUrl = import.meta.env.VITE_APP_API_URL;
     this.controller = new AbortController()
     this.instance = axios.create({
@@ -38,23 +39,25 @@ class AxiosService {
 
   private setupInterceptors() {
     this.instance.interceptors.request.use(
-      (config) => {
+      (config: { headers: { Authorization: any }; signal: AbortSignal }) => {
         if (config.headers && this.auth.value) {
           config.headers.Authorization = this.auth.value
         }
         config.signal = this.controller.signal
         return config
       },
-      (error) => {
+      (error: any) => {
+        // @ts-ignore
         return Promise.reject(error)
       }
     )
 
     this.instance.interceptors.response.use(
-      (response) => response,
-      (error) => {
+      (response: any) => response,
+      (error: any) => {
         const data: any = (error as AxiosError).response?.data
         message.error(data?.message || 'An error occurred')
+        // @ts-ignore
         return Promise.reject(data)
       }
     )
@@ -80,7 +83,7 @@ class AxiosService {
     return res.data
   }
 
-  cancel() {
+  public cancel() {
     this.controller.abort()
   }
 }
