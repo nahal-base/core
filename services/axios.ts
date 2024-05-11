@@ -18,7 +18,7 @@ class AxiosService {
   private auth: Ref<string>
 
   constructor() {
-    this.baseUrl = import.meta.env.APP_API_BASE_URL;
+    this.baseUrl = import.meta.env.VITE_APP_API_URL;
     this.controller = new AbortController()
     this.instance = axios.create({
       baseURL: this.baseUrl,
