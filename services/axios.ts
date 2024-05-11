@@ -18,7 +18,7 @@ class AxiosService {
   private auth: Ref<string>
 
   constructor() {
-    this.baseUrl = 'http://10.0.202.34:8091/api/'
+    this.baseUrl = import.meta.env.APP_API_BASE_URL;
     this.controller = new AbortController()
     this.instance = axios.create({
       baseURL: this.baseUrl,
