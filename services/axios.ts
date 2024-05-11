@@ -39,7 +39,7 @@ class AxiosService {
 
   private setupInterceptors() {
     this.instance.interceptors.request.use(
-      (config: { headers: { Authorization: any }; signal: AbortSignal }) => {
+      (config: any) => {
         if (config.headers && this.auth.value) {
           config.headers.Authorization = this.auth.value
         }
