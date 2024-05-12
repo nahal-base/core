@@ -1,5 +1,5 @@
 import { useI18n } from 'vue-i18n'
-import { useRegex } from '@/core/composable/regex'
+import { useRegex } from './regex'
 export const useRules = () => {
   const { t } = useI18n()
   const regex = useRegex()

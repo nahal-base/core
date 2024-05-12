@@ -20,10 +20,4 @@ export const useModal = () => {
 
   return { isOpen, open, close }
 }
-export const useMessage = () => {
-  const { t } = useI18n()
-  const add = () => message.success(t('successAdd'))
-  const update = () => message.success(t('successUpdate'))
-  const remove = () => message.success(t('successRemove'))
-  return { add, update, remove }
-}
+
