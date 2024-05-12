@@ -30,7 +30,7 @@
         </template>
       </Dropdown>
       <AppSetting />
-      <LockScreen />
+      <!-- <LockScreen /> -->
     </div>
   </LayoutHeader>
 </template>
@@ -40,7 +40,7 @@ import { Icon } from '@iconify/vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/core/stores/authStore'
 import { useConfigStore } from '@/core/stores/configStore'
-import LockScreen from '@/core/components/LockScreen.vue'
+// import LockScreen from '@/core/components/LockScreen.vue'
 import AppSetting from '@/core/components/AppSetting.vue'
 import { AMButton } from '@/core/components/components'
 import { useI18n } from 'vue-i18n'
