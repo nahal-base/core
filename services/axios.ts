@@ -77,6 +77,10 @@ class AxiosService {
     const res = await this.instance.put(url + (query || ''), data)
     return res.data
   }
+   public async patch({ url, query, data }: { url: string; query?: string; data?: object }) {
+    const res = await this.instance.patch(url + (query || ""), data);
+    return res.data
+  }
 
   public async delete({ url, query, data }: { url: string; query?: string; data?: object }) {
     const res = await this.instance.delete(url + (query || ''), { data })
