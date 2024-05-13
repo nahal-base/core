@@ -21,7 +21,7 @@
           <Menu>
             <!--            <Divider class="!my-0" />-->
             <MenuItem key="0" class="!text-red" @click="logout">
-              {{ t('exit') }}
+              {{ t('panel.exit') }}
               <template #icon>
                 <Icon icon="uil:signout" />
               </template>
