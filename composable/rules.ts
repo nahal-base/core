@@ -9,11 +9,12 @@ export const useRules = () => {
   const required = { required: true, message: t("rules.required") };
   const number = { required: true, message: t('rules.number'), pattern: regex.number }
   const initNumber = { required: true, message: t('rules.initNumber'), pattern: regex.initNumber }
+  const floatNumber = { required: true, message: t('rules.initNumber'), pattern: regex.floatNumber }
   const url = { required: true, message: t("rules.url"), pattern: regex.url };
   const ipv4 = { required: true, message: t("rules.ipv4"), pattern: regex.ipv4 };
   const mobile = { required: true, message: t("rules.mobile"), pattern: regex.mobile };
   const phone = { required: true, message: t("rules.phone"), pattern: regex.phone };
   const nationalCode = { required: true, message: t("rules.nationalCode"), pattern: regex.nationalCode };
 
-  return { required, email, password, ltr, initNumber, number, url,ipv4,mobile,phone,nationalCode };
+  return { required, email, password, ltr, initNumber, number, url,ipv4,mobile,phone,nationalCode ,floatNumber};
 }

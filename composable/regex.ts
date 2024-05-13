@@ -10,7 +10,7 @@ export const useRegex = () => {
   const nationalCode = /^\d{10}$/;
   const number = /^\d+$/;
   const initNumber = /^[0-9]+$/
-
+  const floatNumber = /^-?\d+(\.\d+)?$/
   return {
     email,
     password,
@@ -23,5 +23,6 @@ export const useRegex = () => {
     nationalCode,
     number,
     initNumber,
+    floatNumber,
   };
 }
