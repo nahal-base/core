@@ -18,7 +18,7 @@
             v-model:value="configStore.configStorage.theme.token.colorPrimary"
             @change="onChangeColor"
           >
-            <RadioButton value="#71717a" class="!bg-[#71717a]"></RadioButton>
+            <RadioButton value="#3b82f6" class="!bg-[#3b82f6]"></RadioButton>
             <RadioButton value="#ef4444" class="!bg-[#ef4444]"></RadioButton>
             <RadioButton value="#f97316" class="!bg-[#f97316]"></RadioButton>
             <RadioButton value="#eab308" class="!bg-[#eab308]"></RadioButton>
