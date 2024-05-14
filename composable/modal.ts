@@ -1,19 +1,18 @@
-import { computed, ref } from "vue";
-import { message } from "ant-design-vue/es";
-import { useI18n } from "vue-i18n";
+import { ref } from "vue";
 import { isFunction } from "lodash";
 
 export const useModal = () => {
   const isOpen = ref<boolean>(false);
 
-  // const isOpen = computed(() => isOpenRef.value);
-
-  const open = (callBack: Function) => {
-    if (isFunction(callBack)) {
-      callBack();
-    }
+  const open = (...callbacks: Function[]) => {
+    callbacks.forEach((callback) => {
+      if (isFunction(callback)) {
+        callback();
+      }
+    });
     isOpen.value = true;
   };
+
   const close = () => {
     isOpen.value = false;
   };
@@ -21,28 +20,40 @@ export const useModal = () => {
   const toggle = () => {
     isOpen.value = !isOpen.value;
   };
-  const invokeToggle = (callback: Function) => {
-    if (isFunction(callback)) {
-      callback();
+
+  const invokeToggle = (...callbacks: Function[]) => {
+    callbacks.forEach((callback) => {
+      if (isFunction(callback)) {
+        callback();
+      }
+    });
+    isOpen.value = !isOpen.value;
+  };
+
+  const invokeAsyncToggle = async (...callbacks: Function[]) => {
+    for (const callback of callbacks) {
+      if (isFunction(callback)) {
+        await callback();
+      }
     }
     isOpen.value = !isOpen.value;
   };
-  const invokeAsyncToggle = async (callback: Function) => {
-    if (isFunction(callback)) {
-      await callback();
-    }
+
+  const toggleInvoke = (...callbacks: Function[]) => {
     isOpen.value = !isOpen.value;
+    callbacks.forEach((callback) => {
+      if (isFunction(callback)) {
+        callback();
+      }
+    });
   };
-  const toggleInvoke = (callback: Function) => {
+
+  const toggleInvokeAsync = async (...callbacks: Function[]) => {
     isOpen.value = !isOpen.value;
-    if (isFunction(callback)) {
-      callback();
-    }
-  };
-  const toggleInvokeAsync = async (callback: Function) => {
-    isOpen.value = !isOpen.value;
-    if (isFunction(callback)) {
-      await callback();
+    for (const callback of callbacks) {
+      if (isFunction(callback)) {
+        await callback();
+      }
     }
   };
 
