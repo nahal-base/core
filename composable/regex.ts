@@ -12,6 +12,7 @@ export const useRegex = () => {
   const initNumber = /^[0-9]+$/
   const floatNumber = /^-?\d+(\.\d+)?$/
   const ipv4OrUrl = /^(?:(?:\d{1,3}\.){3}\d{1,3}|(?:https?|ftp):\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}(?:\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)$/;
+  const value = /^[a-zA-Z_]+$/
 
 
   return {
@@ -28,5 +29,6 @@ export const useRegex = () => {
     initNumber,
     floatNumber,
     ipv4OrUrl,
-  };
+    value
+  }
 }

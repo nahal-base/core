@@ -15,7 +15,23 @@ export const useRules = () => {
   const mobile = { required: true, message: t("rules.mobile"), pattern: regex.mobile };
   const phone = { required: true, message: t("rules.phone"), pattern: regex.phone };
   const nationalCode = { required: true, message: t("rules.nationalCode"), pattern: regex.nationalCode };
-  const ipv4OrUrl = { required: true, message: t("rules.ipv4OrUrl"), pattern: regex.ipv4OrUrl };
+  const ipv4OrUrl = { required: true, message: t('rules.ipv4OrUrl'), pattern: regex.ipv4OrUrl }
+  const value = { required: true, message: t('rules.value'), pattern: regex.value }
 
-  return { required, email, password, ltr, initNumber, number, url,ipv4,mobile,phone,nationalCode ,floatNumber,ipv4OrUrl};
+  return {
+    required,
+    email,
+    password,
+    ltr,
+    initNumber,
+    number,
+    url,
+    ipv4,
+    mobile,
+    phone,
+    nationalCode,
+    floatNumber,
+    ipv4OrUrl,
+    value
+  }
 }
