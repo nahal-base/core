@@ -1,26 +1,25 @@
-
-
 <template>
-<Button class="flex  items-center" :class="$slots.default ? 'justify-between':'justify-center'">
-<template #icon>
-  <Icon :icon="props.icon" />
-</template>
-  <template v-if="$slots.default"><slot /></template>
-</Button>
+  <Button
+    class="flex items-center"
+    :class="$slots.default ? 'justify-between' : 'justify-center'"
+  >
+    <template #icon v-if="props.icon">
+      <Icon :icon="props.icon" />
+    </template>
+    <slot v-if="$slots.default" />
+  </Button>
 </template>
 
 <script setup lang="ts">
-import {Button} from "ant-design-vue/es"
-interface Props{
-  icon: string
+import { Button } from "ant-design-vue/es";
+interface Props {
+  icon: string;
 }
 
-const props = withDefaults(defineProps<Props>(),{
-  icon: ''
-})
+const props = withDefaults(defineProps<Props>(), {
+  icon: "",
+});
 
-import { Icon } from '@iconify/vue'
+import { Icon } from "@iconify/vue";
 </script>
-<style scoped lang="less">
-
-</style>
+<style scoped lang="less"></style>
