@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { Button } from "ant-design-vue/es";
 interface Props {
-  icon: string;
+  icon?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
