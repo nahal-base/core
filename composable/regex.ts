@@ -11,6 +11,8 @@ export const useRegex = () => {
   const number = /^\d+$/;
   const initNumber = /^[0-9]+$/
   const floatNumber = /^-?\d+(\.\d+)?$/
+  const urlAndIIpRegex = /^(?:(?:https?|ftp):\/\/)?(?:[\w-]+\.)+[a-z]{2,6}(?::\d{1,5})?(?:\/\S*)?$/
+
   return {
     email,
     password,
@@ -24,5 +26,6 @@ export const useRegex = () => {
     number,
     initNumber,
     floatNumber,
+    urlAndIIpRegex,
   };
 }
