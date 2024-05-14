@@ -13,7 +13,7 @@
     <div
       class="p-4 bg-gray-50 flex gap-x-4 items-center justify-between border-t border-t-dashed border-t-gray-300"
     >
-      <Select :value="configStore.direction" size="small">
+      <Select v-model:value="configStore.configStorage.locale" size="small">
         <SelectOption value="ltr">
           <div class="flex items-center gap-x-2">
             <Icon icon="twemoji:flag-england" />
@@ -31,7 +31,7 @@
       <div class="text-sm text-center font-body">
         تحلیل، طراحی و توسعه توسط اداره کل نرم افزار شرکت گسترش فناوری های نوین
       </div>
-      <div class="">sdf</div>
+      <div></div>
     </div>
   </div>
 </template>

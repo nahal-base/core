@@ -8,19 +8,19 @@ import { LocaleMapping, type LocaleType } from '@/core/types/ConfigModel'
 import { DirectionsEnum, LanguagesEnum, SizesEnum } from '@/core/enums'
 
 export const useConfigStore = defineStore('config', () => {
-  const configStorage = useLocalStorage('config', {
+  const configStorage = useLocalStorage("config", {
     dir: DirectionsEnum.RTL as DirectionsEnum,
     locale: LanguagesEnum.FARSI as LocaleType,
     theme: {
       token: {
-        colorPrimary: 'green',
+        colorPrimary: "#3b82f6",
         controlHeight: 42,
-        fontFamily: 'Vazirmatn FD',
-        fontSize: 16
-      }
+        fontFamily: "Vazirmatn FD",
+        fontSize: 16,
+      },
     },
-    size: SizesEnum.Middle as SizesEnum
-  })
+    size: SizesEnum.Middle as SizesEnum,
+  });
   const direction = computed(() => configStorage.value.dir)
   const antLocale = computed(() => configStorage.value.locale)
   const locale = computed(() => LocaleMapping[antLocale.value])
