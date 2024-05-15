@@ -1,11 +1,6 @@
 <template>
-  <Button type="link" size="small">
-    <template #icon>
-      <Icon icon="lets-icons:full" />
-    </template>
-  </Button>
+  <AMButton type="link" size="small" icon="lets-icons:full" />
 </template>
 <script setup lang="ts">
-import { Button } from 'ant-design-vue/es'
-import { Icon } from '@iconify/vue'
+import AMButton from './AMButton.vue'
 </script>
