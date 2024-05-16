@@ -2,7 +2,7 @@ export default {
   rules: {
     required: "This field is required",
     email: "Email is not entered correctly",
-    password: "Password: 6-40 characters, lowercase, uppercase, number, special character.",
+    password: "6-40 characters, lowercase, uppercase, number, special character.",
     ltr: "Only English characters",
     initNumber: "Number should not be negative",
     number: "This field must be a number",
@@ -11,13 +11,16 @@ export default {
     mobile: "Please enter a valid mobile number",
     phone: "Please enter a valid phone number",
     ipv4OrUrl: "Please enter a valid IP address or URL",
-    value: "Please enter a unique identifier",
+    value: "Please enter a unique identifier (e.g., my_identifier or myIdentifier).",
     nationalCode: "Please enter a valid national code",
     persian: "Only Persian characters",
     englishAlphabet: "Only English alphabets",
     englishNumber: "Only English numbers",
     englishSpecialCharacter: "Only English special characters",
     englishNumberOrAlphabet: "Only English numbers or alphabets",
+    persianNumber: "Only Persian numbers",
+    persianAlphabet: "Only Persian alphabets",
+    persianNumberOrAlphabet: "Only Persian numbers or alphabets",
   },
 
   form: {

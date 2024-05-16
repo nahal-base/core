@@ -13,7 +13,9 @@ export const useRegex = () => {
   const floatNumber = /^(?:0|[1-9]\d*)(?:\.\d+)?$/;
   const ipv4OrUrl = /^(?:(?:\d{1,3}\.){3}\d{1,3}(?::\d+)?|(?:https?|ftp):\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}(?::\d+)?(?:\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)$/;
   const value = /^[a-zA-Z]+(?:_[a-zA-Z]+)*$/;
-  const persian = /^[\u0600-\u06FF\s]+$/;
+  const persianNumber = /^[\u06F0-\u06F9]+$/;
+  const persianAlphabet = /^[\u0600-\u06FF]+$/;
+  const persianNumberOrAlphabet = /^[\u0600-\u06FF\u06F0-\u06F9]+$/;
   const englishAlphabet = /^[a-zA-Z]+$/;
   const englishNumber = /^[0-9]+$/;
   const englishSpecialCharacter = /^[^a-zA-Z0-9]+$/;
@@ -35,7 +37,9 @@ export const useRegex = () => {
     floatNumber,
     ipv4OrUrl,
     value,
-    persian,
+    persianNumber,
+    persianAlphabet,
+    persianNumberOrAlphabet,
     englishAlphabet,
     englishNumber,
     englishSpecialCharacter,

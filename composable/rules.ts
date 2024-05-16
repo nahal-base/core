@@ -17,7 +17,9 @@ export const useRules = () => {
   const nationalCode = { required: true, message: t("rules.nationalCode"), pattern: regex.nationalCode };
   const ipv4OrUrl = { required: true, message: t('rules.ipv4OrUrl'), pattern: regex.ipv4OrUrl };
   const value = { required: true, message: t('rules.value'), pattern: regex.value };
-  const persian = { required: true, message: t('rules.persian'), pattern: regex.persian };
+  const persianAlphabet = { required: true, message: t('rules.persianAlphabet'), pattern: regex.persianAlphabet };
+  const persianNumber = { required: true, message: t('rules.persianNumber'), pattern: regex.persianNumber };
+  const persianNumberOrAlphabet = { required: true, message: t('rules.persianNumberOrAlphabet'), pattern: regex.persianNumberOrAlphabet };
   const englishAlphabet = { required: true, message: t('rules.englishAlphabet'), pattern: regex.englishAlphabet };
   const englishNumber = { required: true, message: t('rules.englishNumber'), pattern: regex.englishNumber };
   const englishNumberOrAlphabet = { required: true, message: t('rules.englishNumberOrAlphabet'), pattern: regex.englishNumberOrAlphabet };
@@ -38,7 +40,9 @@ export const useRules = () => {
     floatNumber,
     ipv4OrUrl,
     value,
-    persian,
+    persianAlphabet,
+    persianNumber,
+    persianNumberOrAlphabet,
     englishAlphabet,
     englishNumber,
     englishSpecialCharacter,
