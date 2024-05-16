@@ -1,4 +1,3 @@
-i18n;
 export default {
   rules: {
     required: "این فیلد اجباری است",

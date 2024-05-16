@@ -1,4 +1,3 @@
-i18n;
 export default {
   rules: {
     required: "This field is required",
