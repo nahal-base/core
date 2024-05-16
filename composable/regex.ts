@@ -10,9 +10,14 @@ export const useRegex = () => {
   const nationalCode = /^\d{10}$/;
   const number = /^\d+$/;
   const initNumber = /^[0-9]+$/
-  const floatNumber = /^-?\d+(\.\d+)?$/
+  const floatNumber = /^(?:0|[1-9]\d*)(?:\.\d+)?$/;
   const ipv4OrUrl = /^(?:(?:\d{1,3}\.){3}\d{1,3}(?::\d+)?|(?:https?|ftp):\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}(?::\d+)?(?:\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)$/;
   const value = /^[a-zA-Z]+(?:_[a-zA-Z]+)*$/;
+  const persian = /^[\u0600-\u06FF\s]+$/;
+  const englishAlphabet = /^[a-zA-Z]+$/;
+  const englishNumber = /^[0-9]+$/;
+  const englishSpecialCharacter = /^[^a-zA-Z0-9]+$/;
+  const englishNumberOrAlphabet = /^(?:[a-zA-Z]+|[0-9]+)$/;
 
 
   return {
@@ -29,6 +34,11 @@ export const useRegex = () => {
     initNumber,
     floatNumber,
     ipv4OrUrl,
-    value
-  }
+    value,
+    persian,
+    englishAlphabet,
+    englishNumber,
+    englishSpecialCharacter,
+    englishNumberOrAlphabet,
+  };
 }

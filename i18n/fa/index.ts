@@ -12,7 +12,12 @@ export default {
     phone: "لطفا یک شماره تلفن معتبر وارد کنید",
     ipv4OrUrl: "لطفاً یک آدرس IP یا یک آدرس URL معتبر وارد کنید",
     value: "لطفا یک شناسه یکتا وارد کنید",
-    nationalCode: 'لطفا کد ملی معتبر وارد کنید'
+    nationalCode: "لطفا کد ملی معتبر وارد کنید",
+    persian: "تنها حروف فارسی مجاز است",
+    englishAlphabet: "تنها حروف الفبای انگلیسی مجاز است",
+    englishNumber: "تنها اعداد انگلیسی مجاز است",
+    englishSpecialCharacter: "تنها کاراکترهای خاص انگلیسی مجاز است",
+    englishNumberOrAlphabet: "تنها اعداد یا حروف انگلیسی مجاز است",
   },
 
   form: {

@@ -15,8 +15,13 @@ export const useRules = () => {
   const mobile = { required: true, message: t("rules.mobile"), pattern: regex.mobile };
   const phone = { required: true, message: t("rules.phone"), pattern: regex.phone };
   const nationalCode = { required: true, message: t("rules.nationalCode"), pattern: regex.nationalCode };
-  const ipv4OrUrl = { required: true, message: t('rules.ipv4OrUrl'), pattern: regex.ipv4OrUrl }
-  const value = { required: true, message: t('rules.value'), pattern: regex.value }
+  const ipv4OrUrl = { required: true, message: t('rules.ipv4OrUrl'), pattern: regex.ipv4OrUrl };
+  const value = { required: true, message: t('rules.value'), pattern: regex.value };
+  const persian = { required: true, message: t('rules.persian'), pattern: regex.persian };
+  const englishAlphabet = { required: true, message: t('rules.englishAlphabet'), pattern: regex.englishAlphabet };
+  const englishNumber = { required: true, message: t('rules.englishNumber'), pattern: regex.englishNumber };
+  const englishNumberOrAlphabet = { required: true, message: t('rules.englishNumberOrAlphabet'), pattern: regex.englishNumberOrAlphabet };
+  const englishSpecialCharacter = { required: true, message: t('rules.englishSpecialCharacter'), pattern: regex.englishSpecialCharacter };
 
   return {
     required,
@@ -32,6 +37,11 @@ export const useRules = () => {
     nationalCode,
     floatNumber,
     ipv4OrUrl,
-    value
-  }
+    value,
+    persian,
+    englishAlphabet,
+    englishNumber,
+    englishSpecialCharacter,
+    englishNumberOrAlphabet,
+  };
 }

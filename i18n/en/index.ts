@@ -13,6 +13,11 @@ export default {
     ipv4OrUrl: "Please enter a valid IP address or URL",
     value: "Please enter a unique identifier",
     nationalCode: "Please enter a valid national code",
+    persian: "Only Persian characters",
+    englishAlphabet: "Only English alphabets",
+    englishNumber: "Only English numbers",
+    englishSpecialCharacter: "Only English special characters",
+    englishNumberOrAlphabet: "Only English numbers or alphabets",
   },
 
   form: {
