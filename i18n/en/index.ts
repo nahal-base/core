@@ -2,7 +2,7 @@ export default {
   rules: {
     required: "This field is required",
     email: "Email is not entered correctly",
-    password: "Password must be between 6 and 40 characters",
+    password: "Password: 6-40 characters, lowercase, uppercase, number, special character.",
     ltr: "Only English characters",
     initNumber: "Number should not be negative",
     number: "This field must be a number",
