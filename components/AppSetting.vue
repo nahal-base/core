@@ -1,6 +1,11 @@
 <template>
   <div>
-    <AMButton icon="tabler:settings" type="text" class="text-white" @click.prevent="showModal" />
+    <AMButton
+      icon="tabler:settings"
+      type="text"
+      class="text-white"
+      @click.prevent="showModal"
+    />
     <Modal v-model:open="open" @ok="handleOk">
       <template #title>
         تنظیمات
@@ -39,7 +44,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 import {
   Divider,
   Form,
@@ -48,32 +53,32 @@ import {
   RadioButton,
   RadioGroup,
   Select,
-  SelectOption
-} from 'ant-design-vue/es'
-import { useConfigStore } from '@/core/stores/configStore'
-import { useCssVar } from '@vueuse/core'
-import { useI18n } from 'vue-i18n'
-import { AMButton } from '@/core/components/components'
-import { LanguagesEnum } from '@/core/enums'
+  SelectOption,
+} from "ant-design-vue/es";
+import { useConfigStore } from "@/core/stores/configStore";
+import { useCssVar } from "@vueuse/core";
+import { useI18n } from "vue-i18n";
+import { AMButton } from "@/core/components/components";
+import { LanguagesEnum } from "@/core/enums";
 
-const { t } = useI18n()
+const { t } = useI18n();
 
-const primaryColor = useCssVar('--primary-color')
-const onChangeColor = (e) => {
-  primaryColor.value = e.target.value
-}
-const configStore = useConfigStore()
+const primaryColor = useCssVar("--primary-color");
+const onChangeColor = (e: MouseEvent) => {
+  primaryColor.value = (e.target as HTMLInputElement).value;
+};
+const configStore = useConfigStore();
 
-const open = ref<boolean>(false)
+const open = ref<boolean>(false);
 
 const showModal = () => {
-  open.value = true
-}
+  open.value = true;
+};
 
 const handleOk = (e: MouseEvent) => {
-  console.log(e)
-  open.value = false
-}
+  console.log(e);
+  open.value = false;
+};
 </script>
 
 <style lang="less">
