@@ -60,11 +60,12 @@ import { useCssVar } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import { AMButton } from "@/core/components/components";
 import { LanguagesEnum } from "@/core/enums";
+import type{ RadioChangeEvent } from "ant-design-vue/es/radio/interface";
 
 const { t } = useI18n();
 
 const primaryColor = useCssVar("--primary-color");
-const onChangeColor = (e: MouseEvent) => {
+const onChangeColor = (e: RadioChangeEvent) => {
   primaryColor.value = (e.target as HTMLInputElement).value;
 };
 const configStore = useConfigStore();
