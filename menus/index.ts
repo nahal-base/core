@@ -9,28 +9,36 @@ interface MenuItem {
   icon: string;
   children?: MenuItem[];
 }
+
+interface GeneratedMenuItem {
+  key: string;
+  label: string;
+  icon?: () => ReturnType<typeof h>;
+  children?: GeneratedMenuItem[];
+}
+
 export const useMenus = () => {
   const { t } = useI18n();
 
-  const generateMenuItem = (item: MenuItem) => {
-    const menuItem = {
+  const generateMenuItem = (item: MenuItem): GeneratedMenuItem => {
+    const menuItem: GeneratedMenuItem = {
       key: item.key,
       label: t(item.label),
       icon: () => h(Icon, { icon: item.icon }),
     };
     if (item.children) {
-      menuItem["children"] = item.children.map((child: MenuItem) => {
+      menuItem.children = item.children.map((child: MenuItem) => {
         return {
           key: child.key,
           label: t(child.label),
-        };
+        } as GeneratedMenuItem;
       });
     }
     return menuItem;
   };
 
   const items = computed(() => {
-    return data.map((item) => generateMenuItem(item));
+    return data.map((item: MenuItem) => generateMenuItem(item));
   });
 
   return { items };
