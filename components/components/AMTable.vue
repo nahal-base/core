@@ -10,7 +10,7 @@
           <SelectOption :value="50">50</SelectOption>
           <SelectOption :value="100">100</SelectOption>
         </Select>
-        <AMButton type="link" @click="emits('add')" class="flex items-center" icon="tabler:plus">
+        <AMButton type="link" @click="emits('addRow')" class="flex items-center" icon="tabler:plus">
           {{ t('add') }}
         </AMButton>
       </div>
