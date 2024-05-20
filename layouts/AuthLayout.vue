@@ -3,9 +3,9 @@
     <div class="container mx-auto grid items-center">
       <div class="grid grid-cols-2">
         <div class="flex flex-col justify-center items-center">
-          <AMCard :title="t('form.login')" class="w-120">
+          <AzCard :title="t('form.login')" class="w-120">
             <RouterView />
-          </AMCard>
+          </AzCard>
         </div>
         <img class="w-170" src="@/core/assets/images/panel/signup.svg" alt="" />
       </div>
@@ -39,7 +39,7 @@
 import { RouterView } from 'vue-router'
 import { Select, SelectOption } from 'ant-design-vue/es'
 import { useConfigStore } from '@/core/stores/configStore'
-import { AMCard } from '@/core/components/components'
+import { AzCard } from '@/core/components'
 import { Icon } from '@iconify/vue/dist/iconify.js'
 import { useI18n } from 'vue-i18n'
 
