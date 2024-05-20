@@ -9,14 +9,14 @@
   >
     <div class="flex items-center ms-auto">
       <Dropdown :trigger="['click']" class="!ms-auto">
-        <AMButton
+        <AzButton
           icon="tabler:user"
           type="text"
           class="text-white !flex !items-center gap-x-2"
           @click.prevent
         >
           {{ authStore.currentUser.username }}
-        </AMButton>
+        </AzButton>
         <template #overlay>
           <Menu>
             <!--            <Divider class="!my-0" />-->
@@ -42,7 +42,7 @@ import { useAuthStore } from '@/core/stores/authStore'
 import { useConfigStore } from '@/core/stores/configStore'
 // import LockScreen from '@/core/components/LockScreen.vue'
 import AppSetting from '@/core/components/AppSetting.vue'
-import { AMButton } from '@/core/components/components'
+import { AzButton } from '@/core/components'
 import { useI18n } from 'vue-i18n'
 
 const configStore = useConfigStore()
