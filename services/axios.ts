@@ -56,7 +56,7 @@ class AxiosService {
       (response: any) => response,
       (error: any) => {
         const data: any = (error as AxiosError).response?.data
-        message.error(data?.message || 'An error occurred')
+        message.error(data?.message || 'خطا  پیش آمده است دوباره تلاش کنید')
         // @ts-ignore
         return Promise.reject(data)
       }
