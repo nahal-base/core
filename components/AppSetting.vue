@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AMButton
+    <AzButton
       icon="tabler:settings"
       type="text"
       class="text-white"
@@ -58,7 +58,7 @@ import {
 import { useConfigStore } from "@/core/stores/configStore";
 import { useCssVar } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
-import { AMButton } from "@/core/components/components";
+import { AzButton } from "@/core/components";
 import { LanguagesEnum } from "@/core/enums";
 import type{ RadioChangeEvent } from "ant-design-vue/es/radio/interface";
 
