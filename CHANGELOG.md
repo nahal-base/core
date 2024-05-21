@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning].
 ### Added
 - add table defaults
 
+### Fixed
+- fix table issues 
+
 ## [0.0.1] - 2024-05-20
 
 - initial release
