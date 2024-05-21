@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning].
 ### Fixed
 - ltr regex
 
+### Added
+- add table defaults
+
 ## [0.0.1] - 2024-05-20
 
 - initial release
