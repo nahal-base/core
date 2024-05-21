@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning].
 
 
 
+## [0.0.2] - 2024-05-21
+
+### Fixed
+- ltr regex
+
 ## [0.0.1] - 2024-05-20
 
 - initial release
