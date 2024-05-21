@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AMButton icon="tabler:lock" type="text" class="text-white" @click.prevent="showModal" />
+    <AzButton icon="tabler:lock" type="text" class="text-white" @click.prevent="showModal" />
     <Modal
       v-model:open="open"
       width="100%"
@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { Form, FormItem, Input, Modal } from 'ant-design-vue/es'
-import { AMButton } from '@/core/components/components'
+import { AzButton } from '@/core/components'
 
 const open = ref<boolean>(false)
 
