@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning].
 ### Fixed
 - fix table issues 
 
+### Fixed
+- fix layouts style
+
 ## [0.0.1] - 2024-05-20
 
 - initial release

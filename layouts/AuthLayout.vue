@@ -1,5 +1,8 @@
 <template>
-  <div class="grid grid-rows-[1fr_max-content] h-screen bg-auth-pattern" id="my-background">
+  <div
+    class="grid grid-rows-[1fr_max-content] h-screen bg-auth-pattern"
+    id="my-background"
+  >
     <div class="container mx-auto grid items-center">
       <div class="grid grid-cols-2">
         <div class="flex flex-col justify-center items-center">
@@ -11,44 +14,45 @@
       </div>
     </div>
     <div
-      class="p-4 bg-gray-50 flex gap-x-4 items-center justify-between border-t border-t-dashed border-t-gray-300"
+      class="p-4 bg-gray-50 grid grid-cols-3 gap-x-4 items-center justify-between border-t border-t-dashed border-t-gray-300"
     >
-      <Select v-model:value="configStore.configStorage.locale" size="small">
-        <SelectOption value="ltr">
-          <div class="flex items-center gap-x-2">
-            <Icon icon="twemoji:flag-england" />
-            <span>English</span>
-          </div>
-        </SelectOption>
+      <div>
+        <Select v-model:value="configStore.configStorage.locale" size="small">
+          <SelectOption value="ltr">
+            <div class="flex items-center gap-x-2">
+              <Icon icon="twemoji:flag-england" />
+              <span>English</span>
+            </div>
+          </SelectOption>
 
-        <SelectOption value="rtl">
-          <div class="flex items-center gap-x-2">
-            <Icon icon="twemoji:flag-iran" />
-            <span>فارسی</span>
-          </div>
-        </SelectOption>
-      </Select>
+          <SelectOption value="rtl">
+            <div class="flex items-center gap-x-2">
+              <Icon icon="twemoji:flag-iran" />
+              <span>فارسی</span>
+            </div>
+          </SelectOption>
+        </Select>
+      </div>
       <div class="text-sm text-center font-body">
         تحلیل، طراحی و توسعه توسط اداره کل نرم افزار شرکت گسترش فناوری های نوین
       </div>
-      <div></div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import { Select, SelectOption } from 'ant-design-vue/es'
-import { useConfigStore } from '@/core/stores/configStore'
-import { AzCard } from '@/core/components'
-import { Icon } from '@iconify/vue/dist/iconify.js'
-import { useI18n } from 'vue-i18n'
+import { RouterView } from "vue-router";
+import { Select, SelectOption } from "ant-design-vue/es";
+import { useConfigStore } from "@/core/stores/configStore";
+import { AzCard } from "@/core/components";
+import { Icon } from "@iconify/vue/dist/iconify.js";
+import { useI18n } from "vue-i18n";
 
-const { t } = useI18n()
-const configStore = useConfigStore()
+const { t } = useI18n();
+const configStore = useConfigStore();
 </script>
 <style>
 .bg-auth-pattern {
-  background-image: url('../assets/images/panel/auth-pattern.jpg');
+  background-image: url("../assets/images/panel/auth-pattern.jpg");
   background-position: center center;
   background-size: cover;
 }
