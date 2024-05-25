@@ -1,7 +1,7 @@
 <template>
   <Button
     class="flex items-center"
-    :class="$slots.default ? 'justify-between gap-x-1' : 'justify-center'"
+    :class="props.icon ? 'justify-between gap-x-1' : 'justify-center'"
   >
     <template #icon v-if="props.icon">
       <Icon :icon="props.icon" />

@@ -94,6 +94,6 @@ class AxiosService {
 
 const axiosService = new AxiosService()
 
-export default function useAxios() {
+export function useAxios() {
   return axiosService
 }

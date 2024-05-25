@@ -35,4 +35,6 @@ export default {
     exit: "Exit",
     language: "Panel language",
   },
+  search: 'Search',
+  reset: 'Reset'
 };

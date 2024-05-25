@@ -1,15 +1,17 @@
-import type { AuthDTO } from '@/core/types/authModel'
-import useAxios from './axios'
+import type { AuthDTO } from "@/core/types/authModel";
+import { useAxios } from "./axios";
 
-const axios = useAxios()
+const axios = useAxios();
 export const useAuthService = () => {
-  const login = async (data: AuthDTO.Login.Request): Promise<AuthDTO.Login.Response> => {
+  const login = async (
+    data: AuthDTO.Login.Request
+  ): Promise<AuthDTO.Login.Response> => {
     return await axios.post({
-      url: '/auth/signin',
+      url: "/auth/signin",
       data: data,
-      query: ''
-    })
-  }
+      query: "",
+    });
+  };
 
-  return { login }
-}
+  return { login };
+};
