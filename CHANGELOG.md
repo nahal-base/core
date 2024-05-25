@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning].
 ### Added
 - table sort
 - table search
+- table add button
 ### Fixed
 - axios export
 - button props
