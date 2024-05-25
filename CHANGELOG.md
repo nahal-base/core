@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning].
 
 
 
-## [0.0.3] - 2024-05-21
+## [0.0.3] - 2024-05-25
 ### Added
 - table sort
 - table search
@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning].
 - add table defaults
 ### Fixed
 - fix table issues 
+### Fixed
+- fix layouts style
+
 ## [0.0.1] - 2024-05-20
 
 - initial release
