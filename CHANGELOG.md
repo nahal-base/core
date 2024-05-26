@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning].
 - table search by date
 ### Fixed
 - table performance
+### Fixed
+- table handle change 
 
 ## [0.0.3] - 2024-05-25
 ### Added
