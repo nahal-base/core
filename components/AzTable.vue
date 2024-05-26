@@ -17,10 +17,13 @@
       </AzButton>
       <slot name="addForm" />
       <Divider type="vertical" />
-      <AzFullScreen @click="toggleFullScreen" />
+      <Tooltip title="بزرگنمایی">
+        <AzFullScreen @click="toggleFullScreen" />
+      </Tooltip>
       <Divider type="vertical" />
-      {{ currentData }}
-      <AzButton type="link" size="small" @click="resetTable" icon="tabler:refresh" />
+      <Tooltip title="ریست جدول" size="small">
+        <AzButton type="link" size="small" @click="resetTable" icon="tabler:refresh" />
+      </Tooltip>
     </template>
 
     <template
@@ -60,10 +63,11 @@
     </template>
 
     <template #bodyCell="{ column, record }">
-      <template v-if="column.key === 'enabled'">
-        <AzStatus :status="record.enabled" />
-      </template>
-      <slot name="bodyCell" :column="column" :record="record" />
+      <slot name="bodyCell" :column="column" :record="record">
+        <template v-if="column.key === 'enabled'">
+          <AzStatus :status="record.enabled" />
+        </template>
+      </slot>
     </template>
   </Table>
 </template>
@@ -75,7 +79,7 @@ import type {
   SorterResult,
   TableCurrentDataSource
 } from 'ant-design-vue/lib/table/interface'
-import { Table, Divider, Input, RangePicker } from 'ant-design-vue/es'
+import { Table, Divider, Input, RangePicker, Tooltip } from 'ant-design-vue/es'
 import { useAxios } from '@/core/services/axios'
 import { useFullscreen } from '@vueuse/core'
 import { ref, onMounted, reactive, computed } from 'vue'
@@ -117,24 +121,14 @@ const pagination = reactive({
   total: 0
 })
 
-const sort = reactive<any>({
-  dir: undefined,
-  by: undefined
-})
-
 const state = reactive<any>({
   value: undefined,
   label: undefined
 })
-const currentData = ref({
-  // size: pagination.pageSize,
-  // page: pagination.current - 1,
-  // sortDir: sort.dir,
-  // sortBy: sort.by,
-  // [state.label]: state.value
-})
+const currentData = ref({})
 const fetchData = async () => {
   loading.value = true
+
   try {
     const { content, totalElements } = await axios.post({
       url: props.url,
