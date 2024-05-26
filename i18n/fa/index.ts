@@ -38,4 +38,7 @@ export default {
   },
   search: "جستجو",
   reset: "انصراف",
+  filter: "فیلتر",
+  startDate: "از تاریخ",
+  endDate: "تا تاریخ",
 };

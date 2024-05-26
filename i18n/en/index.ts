@@ -2,7 +2,8 @@ export default {
   rules: {
     required: "This field is required",
     email: "Email is not entered correctly",
-    password: "6-40 characters, lowercase, uppercase, number, special character.",
+    password:
+      "6-40 characters, lowercase, uppercase, number, special character.",
     ltr: "Only English characters",
     initNumber: "Only whole numbers",
     floatNumber: "Only numbers with or without a decimal",
@@ -12,7 +13,8 @@ export default {
     mobile: "Please enter a valid mobile number",
     phone: "Please enter a valid phone number",
     ipv4OrUrl: "Please enter a valid IP address or URL",
-    value: "Please enter a unique identifier (e.g., my_identifier or myIdentifier).",
+    value:
+      "Please enter a unique identifier (e.g., my_identifier or myIdentifier).",
     nationalCode: "Please enter a valid national code",
     persian: "Only Persian characters",
     englishAlphabet: "Only English alphabets",
@@ -35,6 +37,9 @@ export default {
     exit: "Exit",
     language: "Panel language",
   },
-  search: 'Search',
-  reset: 'Reset'
+  search: "Search",
+  reset: "Reset",
+  filter: "Filter",
+  startDate: "Start date",
+  endDate: "End date",
 };
