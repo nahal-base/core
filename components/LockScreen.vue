@@ -8,7 +8,7 @@
       wrap-class-name="full-modal"
       @ok="handleOk"
     >
-      <img class="w-2/3 mx-auto block mb-12 mt-20" src="/logo-3.png" alt="" />
+      <img class="w-2/3 mx-auto block mb-12 mt-20" src="/logo-3.webp" alt="" />
       <Form layout="vertical">
         <FormItem label="username" prop="username">
           <Input />
@@ -38,7 +38,7 @@ const handleOk = (e: MouseEvent) => {
 </script>
 <style lang="less">
 .full-modal {
-  background-image: url('../assets/images/panel/lock-screen.jpg');
+  background-image: url('../assets/images/panel/lock-screen.webp');
 
   .ant-modal {
     @apply max-w-full top-0 pb-0 m-0 h-screen;

@@ -1,7 +1,7 @@
 <template>
   <LayoutSider collapsible v-model:collapsed="collapsed">
     <div class="logo h-14 bg-blue-500 flex justify-center items-center gap-x-2">
-      <img class="h-10 w-10 object-contain" src="/logo-2.png" alt="" srcset="" />
+      <img class="h-10 w-10 object-contain" src="/logo-2.webp" alt="" srcset="" />
       <span v-if="!collapsed" class="text-white">سامانه نهال</span>
       {{}}
     </div>

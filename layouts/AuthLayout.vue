@@ -52,7 +52,7 @@ const configStore = useConfigStore();
 </script>
 <style>
 .bg-auth-pattern {
-  background-image: url("../assets/images/panel/auth-pattern.jpg");
+  background-image: url("../assets/images/panel/auth-pattern.webp");
   background-position: center center;
   background-size: cover;
 }

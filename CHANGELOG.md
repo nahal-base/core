@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [0.0.5] - 2024-05-27
+### Fixed
+- change jpg to webp
+
 ## [0.0.4] - 2024-05-26
 ### Added
 - table search by date
