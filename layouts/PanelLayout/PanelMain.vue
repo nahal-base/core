@@ -1,22 +1,32 @@
 <template>
-  <LayoutContent class="overflow-y-auto p-6">
-    <Transition name="fade">
-      <RouterView />
+  <LayoutContent class="overflow-y-auto p-6 overflow-hidden">
+    <Transition :name="randomAnimation">
+      <RouterView v-cloak />
     </Transition>
   </LayoutContent>
 </template>
 <script lang="ts" setup>
-import { RouterView } from 'vue-router'
+import { RouterView, useRouter } from 'vue-router'
 import { LayoutContent } from 'ant-design-vue/es'
+import { onMounted, reactive, ref } from 'vue'
+
+const randomAnimation = ref('slide-x')
+const animations = reactive(['slide-x', 'slide-y'])
+const getRandomAnimation = () => {
+  const randomIndex = Math.floor(Math.random() * animations.length)
+  return animations[randomIndex]
+}
+onMounted(() => {
+  getRandomAnimation()
+  const router = useRouter()
+  router.beforeEach((to, from, next) => {
+    randomAnimation.value = getRandomAnimation()
+    next()
+  })
+})
 </script>
 <style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .5s ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+[v-cloak] {
+  display: none;
 }
 </style>

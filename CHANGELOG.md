@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [0.0.6] - 2024-05-28
+### Added
+- add animations in RouterView
+### Fixed
+- change data transform to row data 
+
 ## [0.0.5] - 2024-05-27
 ### Fixed
 - change jpg to webp
