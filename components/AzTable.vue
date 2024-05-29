@@ -10,6 +10,7 @@
     prefixCls="az-table"
     ref="azTableRef"
     :class="{ 'bg-white p-4': isFullscreen }"
+    :scroll="{ x: 1000 }"
   >
     <template #title>
       <div class="flex-1"></div>
@@ -188,8 +189,7 @@ interface SortParams {
 const getSortParams = (sorter: SorterResult<any> | SorterResult<any>[] | null): SortParams => {
   if (!sorter) return {}
   const { order, columnKey } = Array.isArray(sorter) ? sorter[0] : sorter
-  console.log('🚀 ~ getSortParams ~ order:', order)
-  console.log('🚀 ~ getSortParams ~ columnKey:', columnKey)
+
   return {
     sortBy: order ? String(columnKey) : undefined,
     sortDir: order
