@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning].
 ### Improved
 - table fetch method
 - table reload method
+### Fixed
+- table fetch method use pagination
 
 ## [0.0.6] - 2024-05-28
 ### Added

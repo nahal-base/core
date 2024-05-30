@@ -153,16 +153,19 @@ const fetchData = async () => {
   loading.value = true
 
   try {
-    const { content, totalElements } = await props.fetch()
+    const { content, totalElements } = await props.fetch(
+      pagination.current - 1,
+      pagination.pageSize
+    )
     data.value = content
     // data.value = content.map((item: any, index: number) => ({
     //   ...item
-      // ...Object.keys(item).reduce((acc: any, key) => {
-      //   if (isString(item[key])) acc[key] = truncate(item[key], { length: 30 })
-      //   return acc
-      // }, {}),
-      // row: (pagination.current - 1) * pagination.pageSize + index + 1,
-      // key: item.id
+    // ...Object.keys(item).reduce((acc: any, key) => {
+    //   if (isString(item[key])) acc[key] = truncate(item[key], { length: 30 })
+    //   return acc
+    // }, {}),
+    // row: (pagination.current - 1) * pagination.pageSize + index + 1,
+    // key: item.id
     // }))
 
     pagination.total = totalElements
