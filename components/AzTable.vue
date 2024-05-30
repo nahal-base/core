@@ -14,16 +14,18 @@
   >
     <template #title>
       <div class="flex-1"></div>
-      <AzButton
-        v-if="$slots.addForm"
-        type="link"
-        size="small"
-        @click="emits('addToggle')"
-        icon="tabler:plus"
-      >
-        {{ t('add') }}
-      </AzButton>
-      <slot name="addForm" />
+      <Tooltip title="افزودن رکورد">
+        <AzButton
+          v-if="$slots.addForm"
+          type="link"
+          size="small"
+          @click="emits('addToggle')"
+          icon="tabler:plus"
+        >
+          {{ t('add') }}
+        </AzButton>
+        <slot name="addForm" />
+      </Tooltip>
       <Divider type="vertical" />
       <Tooltip title="بزرگنمایی">
         <AzFullScreen @click="toggleFullScreen" />
@@ -70,22 +72,25 @@
       <Icon icon="tabler:search" :class="filtered ? 'text-blue' : undefined" />
     </template>
 
-    <template #bodyCell="{ column, record }">
+    <template #bodyCell="{ text, value, column, record, index }">
       <slot name="bodyCell" :column="column" :record="record">
+        <template v-if="column.key === 'row'">
+          {{ (pagination.current - 1) * pagination.pageSize + index + 1 }}
+        </template>
         <template v-if="column.key === 'enabled'">
-          <AzStatus :status="record.enabled" />
+          <AzStatus :status="value" />
         </template>
         <template v-if="column.key === 'updatedAt'">
-          {{ formatDate(record.updatedAt) }}
+          {{ formatDate(value) }}
         </template>
         <template v-if="column.key === 'createdAt'">
-          {{ formatDate(record.createdAt) }}
+          {{ formatDate(value) }}
         </template>
         <template v-if="column.key === 'expiredAt'">
-          {{ formatDate(record.createdAt) }}
+          {{ formatDate(value) }}
         </template>
         <template v-if="column.key === 'startedAt'">
-          {{ formatDate(record.createdAt) }}
+          {{ formatDate(value) }}
         </template>
       </slot>
     </template>
@@ -100,30 +105,27 @@ import type {
   TableCurrentDataSource
 } from 'ant-design-vue/lib/table/interface'
 import { Table, Divider, Input, RangePicker, Tooltip } from 'ant-design-vue/es'
-import { useAxios } from '@/core/services/axios'
 import { useFullscreen } from '@vueuse/core'
 import { ref, onMounted, reactive, computed, watch } from 'vue'
 import { formatDate } from '@/core/utils'
 import { AzButton, AzFullScreen, AzStatus } from '@/core/components'
 import { Icon } from '@iconify/vue/dist/iconify.js'
 import { useI18n } from 'vue-i18n'
-import { isString, truncate } from 'lodash'
+import { isFunction, isString, truncate } from 'lodash'
 import dayjs from 'dayjs'
 import type { PaginationConfig } from 'ant-design-vue/es/pagination'
 import { SortDirEnum } from '@/core/enums'
 
 interface Props {
-  url: string
   columns: ColumnsType
-  reload: Function
-  method: 'post' | 'get'
+  fetch: Function
+  reloadFlag: boolean
 }
 
 const azTableRef = ref<HTMLElement | null>(null)
 const { toggle: toggleFullScreen, isFullscreen } = useFullscreen(azTableRef)
 const props = defineProps<Props>()
 const emits = defineEmits(['addToggle'])
-const axios = useAxios()
 const data = ref([])
 const loading = ref(false)
 const { t } = useI18n()
@@ -151,20 +153,17 @@ const fetchData = async () => {
   loading.value = true
 
   try {
-    const { content, totalElements } = await axios[props.method]({
-      url: props.url,
-      data: currentData.value
-    })
-
-    data.value = content.map((item: any, index: number) => ({
-      ...item,
-      ...Object.keys(item).reduce((acc: any, key) => {
-        if (isString(item[key])) acc[key] = truncate(item[key], { length: 30 })
-        return acc
-      }, {}),
-      row: (pagination.current - 1) * pagination.pageSize + index + 1,
-      key: item.id
-    }))
+    const { content, totalElements } = await props.fetch()
+    data.value = content
+    // data.value = content.map((item: any, index: number) => ({
+    //   ...item
+      // ...Object.keys(item).reduce((acc: any, key) => {
+      //   if (isString(item[key])) acc[key] = truncate(item[key], { length: 30 })
+      //   return acc
+      // }, {}),
+      // row: (pagination.current - 1) * pagination.pageSize + index + 1,
+      // key: item.id
+    // }))
 
     pagination.total = totalElements
   } catch (error) {
@@ -211,7 +210,7 @@ const handleTableChange: TableProps['onChange'] = (
   extra: TableCurrentDataSource<any>
 ) => {
   updatePagination(pag, pagination)
-  console.log('handleTableChange')
+  // console.log('handleTableChange')
 
   const { sortBy, sortDir } = getSortParams(sorter)
   currentData.value = {
@@ -228,7 +227,7 @@ const resetState = () => {
   state.label = undefined
 }
 const handleTimeSubmit = (selectedKeys: string[], confirm: () => void, dataIndex: string) => {
-  console.log('🚀 ~ handleTimeSubmit ~ selectedKeys:', selectedKeys)
+  // console.log('🚀 ~ handleTimeSubmit ~ selectedKeys:', selectedKeys)
   confirm()
   state.value = selectedKeys[0]
     ? [dayjs(selectedKeys[0][0]).format(), dayjs(selectedKeys[0][1]).format()]
@@ -244,7 +243,7 @@ const handleTimeSubmit = (selectedKeys: string[], confirm: () => void, dataIndex
 }
 
 const handleSubmit = (selectedKeys: string[], confirm: () => void, dataIndex: string) => {
-  console.log('🚀 ~ handleSubmit ~ selectedKeys:', selectedKeys)
+  // console.log('🚀 ~ handleSubmit ~ selectedKeys:', selectedKeys)
   state.value = selectedKeys[0]
   state.label = dataIndex
 
@@ -277,13 +276,12 @@ onMounted(async () => {
   await fetchData()
 })
 
-watch([() => props.reload, props.url], async () => {
-  currentData.value = {
-    size: pagination.pageSize,
-    page: pagination.current - 1
+watch(
+  () => props.reloadFlag,
+  async () => {
+    await fetchData()
   }
-  await fetchData()
-})
+)
 </script>
 
 <style lang="less">
