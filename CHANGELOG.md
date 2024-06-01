@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning].
 ## [0.0.8] - 2024-06-01
 ### Fixed
 - table fetch method to post
+- RouterView and Transition
 
 ## [0.0.7] - 2024-05-30
 ### Improved

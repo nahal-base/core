@@ -1,10 +1,13 @@
 <template>
   <LayoutContent class="overflow-y-auto p-6 overflow-hidden">
-    <Transition :name="randomAnimation">
-      <RouterView v-cloak />
-    </Transition>
+    <RouterView v-slot="{ Component }">
+      <Transition :name="randomAnimation">
+        <component :is="Component" v-cloak />
+      </Transition>
+    </RouterView>
   </LayoutContent>
 </template>
+
 <script lang="ts" setup>
 import { RouterView, useRouter } from 'vue-router'
 import { LayoutContent } from 'ant-design-vue/es'
@@ -16,8 +19,8 @@ const getRandomAnimation = () => {
   const randomIndex = Math.floor(Math.random() * animations.length)
   return animations[randomIndex]
 }
+
 onMounted(() => {
-  getRandomAnimation()
   const router = useRouter()
   router.beforeEach((to, from, next) => {
     randomAnimation.value = getRandomAnimation()
@@ -25,6 +28,7 @@ onMounted(() => {
   })
 })
 </script>
+
 <style>
 [v-cloak] {
   display: none;
