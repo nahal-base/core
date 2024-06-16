@@ -1,7 +1,7 @@
-export const enum ColorsEnum {
-  PRIMARY = "var(--primary-color)",
-}
 
+export const enum ColorsEnum {
+  PRIMARY = 'var(--primary-color)'
+}
 export const enum SizesEnum {
   Small = "small",
   Middle = "middle",

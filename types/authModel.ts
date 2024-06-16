@@ -9,10 +9,11 @@ export interface Auth {
 }
 
 export namespace AuthDTO {
-  export interface Content extends Auth {}
+  export type Content = Auth
   export namespace Login {
-    export interface Request extends Pick<Auth, 'username' | 'password'> {}
-    export interface Response extends Omit<Auth, 'password'> {}
+    export interface Request extends Pick<AuthDTO.Content, 'username' | 'password'> {}
+    export interface Response extends Omit<AuthDTO.Content, 'password'> {}
   }
-  export interface User extends Pick<Auth, 'username' | 'id' | 'accessToken' | 'tokenType'> {}
+  export interface User
+    extends Pick<AuthDTO.Content, 'username' | 'id' | 'accessToken' | 'tokenType'> {}
 }

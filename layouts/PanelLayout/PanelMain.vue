@@ -1,10 +1,10 @@
 <template>
-  <LayoutContent class="overflow-y-auto p-6 overflow-hidden">
-    <RouterView v-slot="{ Component }">
-      <Transition :name="randomAnimation">
-        <component :is="Component" v-cloak />
-      </Transition>
-    </RouterView>
+ <LayoutContent class="overflow-y-auto p-6 overflow-hidden">
+   <Transition :name="randomAnimation">
+        <RouterView v-slot="{ Component }">
+        <component :is="Component"  />
+      </RouterView>
+    </Transition>
   </LayoutContent>
 </template>
 

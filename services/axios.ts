@@ -19,7 +19,7 @@ class AxiosService {
 
   constructor() {
     // @ts-ignore
-    this.baseUrl = import.meta.env.VITE_APP_API_URL;
+    this.baseUrl = import.meta.env.VITE_APP_API_URL
     this.controller = new AbortController()
     this.instance = axios.create({
       baseURL: this.baseUrl,
@@ -77,8 +77,8 @@ class AxiosService {
     const res = await this.instance.put(url + (query || ''), data)
     return res.data
   }
-   public async patch({ url, query, data }: { url: string; query?: string; data?: object }) {
-    const res = await this.instance.patch(url + (query || ""), data);
+  public async patch({ url, query, data }: { url: string; query?: string; data?: object }) {
+    const res = await this.instance.patch(url + (query || ''), data)
     return res.data
   }
 
@@ -86,6 +86,12 @@ class AxiosService {
     const res = await this.instance.delete(url + (query || ''), { data })
     return res.data
   }
+  
+  public async executeRequest({ method, url, query, data }: { method: 'get' | 'post' | 'put' | 'patch' | 'delete' ,url: string; query?: string; data?: object }) {
+      const res = await this.instance[method](url + (query || ''), { data })
+      return res.data
+  }
+
 
   public cancel() {
     this.controller.abort()
