@@ -1,5 +1,5 @@
 <template>
-  <Card prefix-cls="am-card" ref="amCardRef" :loading="props.isLoading" bordered hoverable>
+  <Card prefix-cls="az-card" ref="azCardRef" :loading="props.isLoading" bordered hoverable>
     <template #title v-if="props.title">
       <div :class="{ 'flex items-center gap-x-2 ': props.icon?.name }">
         <Icon v-if="props.icon?.name" :icon="props.icon?.name" :class="props.icon?.class" />
@@ -17,8 +17,8 @@ import { Icon } from '@iconify/vue'
 import { Card, Button } from 'ant-design-vue/es'
 import { ref } from 'vue'
 import { useFullscreen } from '@vueuse/core'
-const amCardRef = ref<HTMLElement | null>(null)
-const { toggle } = useFullscreen(amCardRef)
+const azCardRef = ref<HTMLElement | null>(null)
+const { toggle } = useFullscreen(azCardRef)
 interface Props {
   title?: string
   hasFullScreen?: boolean
@@ -31,12 +31,12 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {})
 </script>
 <style lang="less">
-@namespace: 'am-card';
-.am-card {
-  .am-card-head-title {
+@namespace: 'az-card';
+.az-card {
+  .az-card-head-title {
     @apply flex justify-between pt-4;
   }
-  &.am-card-hoverable {
+  &.az-card-hoverable {
     &:hover {
       @apply shadow-md;
     }

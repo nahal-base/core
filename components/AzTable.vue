@@ -118,12 +118,12 @@ import type {
 } from 'ant-design-vue/lib/table/interface'
 import { Table, Divider, Input, RangePicker, Tooltip } from 'ant-design-vue/es'
 import { useFullscreen } from '@vueuse/core'
-import { ref, onMounted, reactive, computed, watch } from 'vue'
+import { ref, onMounted, reactive, computed } from 'vue'
 import { formatDate } from '@/core/utils'
 import { AzButton, AzFullScreen, AzStatus } from '@/core/components'
 import { Icon } from '@iconify/vue/dist/iconify.js'
 import { useI18n } from 'vue-i18n'
-import { isFunction, isString, truncate } from 'lodash'
+import { truncate } from 'lodash'
 import dayjs from 'dayjs'
 import type { PaginationConfig } from 'ant-design-vue/es/pagination'
 import { SortDirEnum } from '@/core/enums'
@@ -131,7 +131,6 @@ import { SortDirEnum } from '@/core/enums'
 interface Props {
   columns: ColumnsType
   fetch: Function
-  reloadFlag: boolean
 }
 
 const azTableRef = ref<HTMLElement | null>(null)
@@ -272,24 +271,10 @@ onMounted(async () => {
   })
 })
 
-watch(
-  () => props.reloadFlag,
-  async () => {
-    await fetchData({
-      size: pagination.pageSize,
-      page: pagination.current - 1
-    })
-  }
-)
-
-// const childMethod = () => {
-//   console.log('Method called from parent');
-// };
 
 defineExpose({
-  resetTable,
-});
-
+  reload: resetTable
+})
 </script>
 
 <style lang="less">

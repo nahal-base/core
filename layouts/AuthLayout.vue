@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-rows-[1fr_max-content] h-screen bg-auth-pattern" id="my-background">
+  <div class="grid grid-rows-[1fr_max-content] min-h-screen bg-auth-pattern" id="my-background">
     <div class="container mx-auto grid items-center">
       <div class="grid grid-cols-2">
         <div class="flex flex-col justify-center items-center">
