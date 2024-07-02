@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [1.0.0] - 2024-07-02
+### Added
+- Password regex variables
+
 ## [0.0.9] - 2024-06-16
 ### Fixed
 - fix RouterView and Transition
