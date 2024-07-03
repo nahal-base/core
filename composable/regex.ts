@@ -1,6 +1,7 @@
 export const useRegex = () => {
   const email = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim;
-  const password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{6,40}$/;
+  const password =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{6,40}$/;
   const rtl = /^[\u0600-\u06FF\s]+$/;
   const ltr = /^[a-zA-Z0-9?><;.,{}[\]\-_+=!@#$%&*|' ]*$/;
   const mobile =
@@ -15,7 +16,8 @@ export const useRegex = () => {
   const initNumber = /^[0-9]+$/;
   const floatNumber = /^(?:0|[1-9]\d*)(?:\.\d+)?$/;
   const ipv4OrUrl =
-    /^(?:(?:\d{1,3}\.){3}\d{1,3}(?::\d+)?|(?:https?|ftp):\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}(?::\d+)?(?:\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)$/;
+    /^(?:(?:\d{1,3}\.){3}\d{1,3}(?::\d+)?(?:\/[-a-zA-Z0-9@:%._\+~#=]*)?|(?:https?|ftp):\/\/(?:\d{1,3}\.){3}\d{1,3}(?::\d+)?(?:\/[-a-zA-Z0-9@:%._\+~#=]*)?|(?:https?|ftp):\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}(?::\d+)?(?:\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)$/;
+
   const value = /^[a-zA-Z]+(?:_[a-zA-Z]+)*$/;
   const persianNumber = /^[\u06F0-\u06F9]+$/;
   const persianAlphabet = /^[\u0600-\u06FF\uFB50-\uFDFF\uFE70-\uFEFF\s]+$/;
@@ -24,10 +26,10 @@ export const useRegex = () => {
   const englishNumber = /^[0-9]+$/;
   const englishSpecialCharacter = /^[^a-zA-Z0-9]+$/;
   const englishNumberOrAlphabet = /^(?:[a-zA-Z]+|[0-9]+)$/;
-  const uppercase= /[A-Z]/
-  const lowercase= /[a-z]/
-  const oneNumber = /[0-9]/  
-  const oneSpecial = /[!@#$%^&*(),.?":{}|<>]/
+  const uppercase = /[A-Z]/;
+  const lowercase = /[a-z]/;
+  const oneNumber = /[0-9]/;
+  const oneSpecial = /[!@#$%^&*(),.?":{}|<>]/;
 
   return {
     email,
@@ -54,6 +56,6 @@ export const useRegex = () => {
     uppercase,
     lowercase,
     oneNumber,
-    oneSpecial
-  }
-}
+    oneSpecial,
+  };
+};

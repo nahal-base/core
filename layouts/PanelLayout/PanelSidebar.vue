@@ -17,7 +17,7 @@
   </LayoutSider>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import type { MenuProps } from 'ant-design-vue'
 import { Menu, LayoutSider } from 'ant-design-vue/es'
 import { useRoute, useRouter } from 'vue-router'
@@ -34,7 +34,12 @@ const route = useRoute()
 onMounted(() => {
   selectedKeys.value = [String(route.name)]
 })
-
+watch(
+  () => route.name,
+  () => {
+    selectedKeys.value = [String(route.name)]
+  }
+)
 const router = useRouter()
 
 const handleClick: MenuProps['onClick'] = (e) => {

@@ -1,7 +1,7 @@
 <template>
   <Button
     class="flex items-center justify-center"
-    :class="{ 'gap-x-4': props.icon }"
+    :class="{ 'gap-x-2': props.icon }"
   >
     <template #icon v-if="props.icon">
       <Icon :icon="props.icon" />
