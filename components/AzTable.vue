@@ -13,66 +13,87 @@
     :scroll="{ x: 1000 }"
   >
     <template #title>
-      <div class="flex-1"></div>
-      <Tooltip title="افزودن رکورد">
-        <AzButton
-          v-if="$slots.addForm"
-          type="link"
-          size="small"
-          @click="emits('addToggle')"
-          icon="tabler:plus"
-        >
-          {{ t('add') }}
-        </AzButton>
-        <slot name="addForm" />
-      </Tooltip>
-      <Divider type="vertical" />
-      <Tooltip title="بزرگنمایی">
-        <AzFullScreen @click="toggleFullScreen" />
-      </Tooltip>
-      <Divider type="vertical" />
-      <Tooltip title="ریست جدول" size="small">
-        <AzButton type="link" size="small" @click="resetTable" icon="tabler:refresh" />
-      </Tooltip>
-    </template>
-
-    <template
-      #customFilterDropdown="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
-    >
-      <div class="p-4">
-        <RangePicker
-          v-if="isDateColumn(column.dataIndex)"
-          class="w-80 mb-4"
-          :placeholder="[t('startDate'), t('endDate')]"
-          :value="selectedKeys[0]"
-          @change="(e) => setSelectedKeys(e ? [e] : [])"
-        />
-        <Input
-          v-else
-          ref="searchInput"
-          :placeholder="`جستجو در ${t(column.dataIndex)}`"
-          :value="selectedKeys[0]"
-          class="mb-4"
-          @change="(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])"
-        />
-        <div class="grid grid-cols-2 gap-2">
+      <div class="flex items-center justify-end">
+        <Divider type="vertical" />
+        <Tooltip title="افزودن رکورد">
           <AzButton
-            type="primary"
-            @click="() => handleSubmit(selectedKeys, confirm, column.dataIndex)"
-            icon="tabler:search"
+            v-if="$slots.addForm"
+            type="link"
+            size="small"
+            @click="emits('addToggle')"
+            icon="tabler:plus"
           >
-            {{ t('filter') }}
+            {{ t('add') }}
           </AzButton>
-          <AzButton @click="() => handleReset(clearFilters)">{{ t('reset') }}</AzButton>
-        </div>
+          <slot name="addForm" />
+        </Tooltip>
+        <Divider type="vertical" />
+        <Tooltip title="فیلتر جدول" size="small">
+          <Badge :count="filteredCount">
+            <AzButton type="link" size="small" @click="filterMode.toggle" icon="tabler:filter">
+              فیلتر
+            </AzButton>
+          </Badge>
+        </Tooltip>
+        <Divider type="vertical" />
+        <Tooltip title="بزرگنمایی">
+          <AzFullScreen @click="toggleFullScreen" />
+        </Tooltip>
+        <Divider type="vertical" />
+        <Tooltip title="ریست جدول" size="small">
+          <AzButton type="link" size="small" @click="resetTable" icon="tabler:refresh" />
+        </Tooltip>
       </div>
+
+      <Transition name="slide">
+        <Card
+          class="py-4 bg-gray-50"
+          v-if="filterMode.isOpen.value"
+          title="لیست فیلترها"
+          size="small"
+        >
+          <template #extra>
+            <AzButton type="text" danger icon="tabler:x" @click="filterMode.toggle" />
+          </template>
+          <Form layout="vertical">
+            <div class="grid grid-cols-4 gap-x-4">
+              <FormItem :label="item.title" v-for="(item, index) in props.filterList" :key="index">
+                <div class="">
+                  <Input
+                    v-if="item.type === FilterTypeEnum.STRING"
+                    v-model:value="item.value"
+                    allow-clear
+                  />
+                  <InputNumber
+                    v-if="item.type === FilterTypeEnum.NUMBER"
+                    v-model:value="item.value"
+                    allow-clear
+                  />
+                  <Switch
+                    v-if="item.type === FilterTypeEnum.BOOLEAN"
+                    v-model:checked="item.value"
+                    allow-clear
+                  />
+                  <RangePicker
+                    v-if="item.type === FilterTypeEnum.DATE"
+                    v-model:value="item.value"
+                    :placeholder="[t('startDate'), t('endDate')]"
+                  />
+                </div>
+              </FormItem>
+            </div>
+          </Form>
+
+          <Divider />
+          <div class="flex justify-end gap-x-4">
+            <AzButton type="text" @click="resetFilter">بازنشانی</AzButton>
+            <AzButton type="primary" @click="submitFilter">جستجو</AzButton>
+          </div>
+        </Card>
+      </Transition>
     </template>
 
-    <template #customFilterIcon="{ filtered }">
-      <Icon icon="tabler:search" :class="filtered ? 'text-blue' : undefined" />
-    </template>
-
-    <template #bodyCell="{ text, value, column, record, index }">
+    <template #bodyCell="{ value, column, record, index }">
       <slot name="bodyCell" :column="column" :record="record">
         <template
           v-if="
@@ -110,26 +131,45 @@
 </template>
 
 <script setup lang="ts">
+import type { PaginationConfig } from 'ant-design-vue/es/pagination'
 import type { ColumnsType, TablePaginationConfig, TableProps } from 'ant-design-vue/es/table'
 import type {
   FilterValue,
   SorterResult,
   TableCurrentDataSource
 } from 'ant-design-vue/lib/table/interface'
-import { Table, Divider, Input, RangePicker, Tooltip } from 'ant-design-vue/es'
+import {
+  Card,
+  Table,
+  Divider,
+  RangePicker,
+  Tooltip,
+  Input,
+  InputNumber,
+  Switch,
+  Form,
+  FormItem,
+  Badge,
+  InputSearch
+} from 'ant-design-vue/es'
 import { useFullscreen } from '@vueuse/core'
 import { ref, onMounted, reactive, computed } from 'vue'
 import { formatDate } from '@/core/utils'
 import { AzButton, AzFullScreen, AzStatus } from '@/core/components'
-import { Icon } from '@iconify/vue/dist/iconify.js'
 import { useI18n } from 'vue-i18n'
-import { truncate } from 'lodash'
-import dayjs from 'dayjs'
-import type { PaginationConfig } from 'ant-design-vue/es/pagination'
-import { SortDirEnum } from '@/core/enums'
-
+import { isNull, isUndefined, truncate } from 'lodash'
+import { FilterTypeEnum, SortDirEnum } from '@/core/enums'
+import { useModal } from '@/core/composable'
+import { Icon } from '@iconify/vue'
+interface FilterList {
+  title: string
+  key: string
+  type: FilterTypeEnum
+  value: any
+}
 interface Props {
   columns: ColumnsType
+  filterList: FilterList[]
   fetch: Function
 }
 
@@ -155,10 +195,6 @@ const pagination = reactive({
   total: 0
 })
 
-const state = reactive<any>({
-  value: undefined,
-  label: undefined
-})
 const currentData = ref({})
 const fetchData = async (_input: unknown) => {
   loading.value = true
@@ -222,47 +258,30 @@ const handleTableChange: TableProps['onChange'] = (
   })
 }
 
-const resetState = () => {
-  state.value = undefined
-  state.label = undefined
+const resetFilter = () => {
+  props.filterList.map((item) => {
+    delete item.value
+  })
+  resetTable()
 }
-const handleTimeSubmit = (selectedKeys: string[], confirm: () => void, dataIndex: string) => {
-  confirm()
-  state.value = selectedKeys[0]
-    ? [dayjs(selectedKeys[0][0]).format(), dayjs(selectedKeys[0][1]).format()]
-    : undefined
-  state.label = dataIndex
-
-  fetchData({
+const filteredCount = computed(() => {
+  return props.filterList.filter((item) => {
+    if (!isUndefined(item.value) && !isNull(item.value)) {
+      return item
+    }
+  }).length
+})
+const submitFilter = () => {
+  const obj: any = {}
+  props.filterList.forEach((item) => {
+    return (obj[item.key] = item.value)
+  })
+  currentData.value = fetchData({
     size: pagination.pageSize,
     page: pagination.current - 1,
-    [state.label]: state.value
+    ...obj
   })
 }
-
-const handleSubmit = (selectedKeys: string[], confirm: () => void, dataIndex: string) => {
-  state.value = selectedKeys[0]
-  state.label = dataIndex
-
-  fetchData({
-    size: pagination.pageSize,
-    page: pagination.current - 1,
-    [state.label]: state.value
-  })
-  // confirm()
-}
-
-const handleReset = (clearFilters: (arg0: { confirm: boolean }) => void) => {
-  clearFilters({ confirm: true })
-  resetState()
-
-  fetchData({
-    size: pagination.pageSize,
-    page: pagination.current - 1
-  })
-}
-
-const isDateColumn = (dataIndex: string) => ['createdAt', 'updatedAt'].includes(dataIndex)
 
 onMounted(async () => {
   await fetchData({
@@ -271,17 +290,22 @@ onMounted(async () => {
   })
 })
 
-
 defineExpose({
   reload: resetTable
 })
-</script>
 
+const filterMode = useModal()
+</script>
 <style lang="less">
-.az-table {
-  .az-table-title {
-    display: flex;
-    align-items: center;
-  }
-}
+// .az-table-column-sorter {
+//   &:has(.anticon) {
+//     display: none;
+//     &:hover {
+//       display: flex;
+//     }
+//   }
+//   &:has(.anticon.active) {
+//     display: flex;
+//   }
+// }
 </style>

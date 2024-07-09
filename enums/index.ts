@@ -21,3 +21,9 @@ export const enum SortDirEnum {
   ASCENDING = "asc",
   DESCENDING = "desc",
 }
+export const enum FilterTypeEnum {
+  STRING,
+  NUMBER,
+  BOOLEAN,
+  DATE,
+}
