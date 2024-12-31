@@ -1,23 +1,23 @@
 <template>
   <div>
-    <AzButton
-      icon="tabler:settings"
-      type="text"
-      class="text-white"
-      @click.prevent="showModal"
-    />
+    <AzButton icon="tabler:settings" type="text" class="text-white" @click.prevent="showModal" />
     <Modal v-model:open="open" @ok="handleOk">
       <template #title>
         تنظیمات
         <Divider />
       </template>
       <Form layout="vertical" class="">
+        <FormItem :label="t('panel.color')">
+          <Switch v-model:checked="isDark" checked-children="تاریک" un-checked-children="روشن" />
+        </FormItem>
+
         <FormItem :label="t('panel.language')">
           <Select v-model:value="configStore.configStorage.locale">
             <SelectOption :value="LanguagesEnum.FARSI">فارسی</SelectOption>
             <SelectOption :value="LanguagesEnum.English">English</SelectOption>
           </Select>
         </FormItem>
+
         <FormItem :label="t('panel.color')">
           <RadioGroup
             v-model:value="configStore.configStorage.theme.token.colorPrimary"
@@ -40,48 +40,77 @@
           </RadioGroup>
         </FormItem>
       </Form>
+      <template #footer></template>
     </Modal>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 import {
   Divider,
   Form,
   FormItem,
   Modal,
+  Switch,
   RadioButton,
   RadioGroup,
   Select,
-  SelectOption,
-} from "ant-design-vue/es";
-import { useConfigStore } from "@/core/stores/configStore";
-import { useCssVar } from "@vueuse/core";
-import { useI18n } from "vue-i18n";
-import { AzButton } from "@/core/components";
-import { LanguagesEnum } from "@/core/enums";
-import type{ RadioChangeEvent } from "ant-design-vue/es/radio/interface";
+  SelectOption
+} from 'ant-design-vue/es'
+import { useConfigStore } from '@/core/stores/configStore'
+import { useCssVar } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+import { AzButton } from '@/core/components'
+import { LanguagesEnum } from '@/core/enums'
+import type { RadioChangeEvent } from 'ant-design-vue/es/radio/interface'
+import { useDark, useToggle } from '@vueuse/core'
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 
-const { t } = useI18n();
+const { t } = useI18n()
 
-const primaryColor = useCssVar("--primary-color");
-const onChangeColor = (e: RadioChangeEvent) => {
-  primaryColor.value = (e.target as HTMLInputElement).value;
-};
-const configStore = useConfigStore();
+const primaryColor = useCssVar('--primary-color')
+// const onChangeColor = (e: RadioChangeEvent) => {
+//   primaryColor.value = (e.target as HTMLInputElement).value
+// }
+const configStore = useConfigStore()
 
-const open = ref<boolean>(false);
+const open = ref<boolean>(false)
 
 const showModal = () => {
-  open.value = true;
-};
+  open.value = true
+}
 
 const handleOk = (e: MouseEvent) => {
-  open.value = false;
-};
+  open.value = false
+}
+
+const colorOptions = [
+  '#3b82f6',
+  '#ef4444',
+  '#f97316',
+  '#eab308',
+  '#84cc16',
+  '#10b981',
+  '#06b6d4',
+  '#0ea5e9',
+  '#6366f1',
+  '#8b5cf6',
+  '#d946ef',
+  '#ec4899',
+  '#f43f5e'
+]
+const onChangeColor = (e: RadioChangeEvent) => {
+  const selectedColor = (e.target as HTMLInputElement).value
+  primaryColor.value = selectedColor
+  configStore.configStorage.theme.token.colorPrimary = selectedColor
+}
 </script>
 
 <style lang="less">
+.ant-radio-button-wrapper-checked {
+  border-color: #818181 !important;
+}
 .ant-radio-group {
   @apply rounded border border-solid border-gray-200 p-4 !grid grid-cols-7 gap-4 w-max h-max;
   flex-wrap: wrap !important;
