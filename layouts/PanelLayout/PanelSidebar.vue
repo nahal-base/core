@@ -1,6 +1,6 @@
 <template>
   <LayoutSider collapsible v-model:collapsed="collapsed">
-    <div class="logo h-14 bg-primary flex justify-center items-center gap-x-2">
+    <div class="logo h-14 bg-blue-500 flex justify-center items-center gap-x-2">
       <img class="h-10 w-10 object-contain" src="/logo-2.webp" alt="" srcset="" />
       <span v-if="!collapsed" class="text-white">سامانه نهال</span>
       {{}}
@@ -50,7 +50,7 @@ const handleClick: MenuProps['onClick'] = (e) => {
 .ant-layout {
   .ant-layout-sider {
     .ant-layout-sider-trigger {
-      @apply !bg-primary;
+      @apply !bg-blue-400;
       height: 46.5px;
       line-height: 50.5px;
     }

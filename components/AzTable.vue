@@ -27,16 +27,14 @@
           </AzButton>
           <slot name="addForm" />
         </Tooltip>
-        <template v-if="props.filterList.length > 0">
-          <Divider type="vertical" />
-          <Tooltip title="فیلتر جدول" size="small">
-            <Badge :count="filteredCount">
-              <AzButton type="link" size="small" @click="filterMode.toggle" icon="tabler:filter">
-                فیلتر
-              </AzButton>
-            </Badge>
-          </Tooltip>
-        </template>
+        <Divider type="vertical" />
+        <Tooltip title="فیلتر جدول" size="small">
+          <Badge :count="filteredCount">
+            <AzButton type="link" size="small" @click="filterMode.toggle" icon="tabler:filter">
+              فیلتر
+            </AzButton>
+          </Badge>
+        </Tooltip>
         <Divider type="vertical" />
         <Tooltip title="بزرگنمایی">
           <AzFullScreen @click="toggleFullScreen" />
@@ -50,7 +48,7 @@
       <Transition name="slide">
         <Card
           class="py-4 bg-gray-50"
-          v-if="filterMode.isOpen.value && props.filterList.length > 0"
+          v-if="filterMode.isOpen.value"
           title="لیست فیلترها"
           size="small"
         >
@@ -167,7 +165,7 @@ interface FilterList {
   title: string
   key: string
   type: FilterTypeEnum
-  value?: any
+  value: any
 }
 interface Props {
   columns: ColumnsType

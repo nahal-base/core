@@ -1,7 +1,11 @@
 <template>
   <LayoutHeader
-    class="!h-14 flex items-center !ps-0 !pe-4 from-primary to-primary"
-    :class="configStore.configStorage.locale === 'fa' ? '!bg-gradient-to-r' : '!bg-gradient-to-l'"
+    class="!bg-gradient-to-r !h-14 flex items-center !pr-0 !pl-4"
+    :class="
+      configStore.configStorage.locale === 'fa'
+        ? '!from-blue !to-blue-500'
+        : '!from-blue-500 !to-blue'
+    "
   >
     <div class="flex items-center ms-auto">
       <Dropdown :trigger="['click']" class="!ms-auto">
