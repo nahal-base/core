@@ -265,7 +265,7 @@ const resetFilter = () => {
   resetTable()
 }
 const filteredCount = computed(() => {
-  return props.filterList.filter((item) => {
+  return props.filterList?.filter((item) => {
     if (!isUndefined(item.value) && !isNull(item.value)) {
       return item
     }
