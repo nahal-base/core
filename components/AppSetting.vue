@@ -60,13 +60,15 @@ import { useCssVar } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import { AzButton } from "@/core/components";
 import { LanguagesEnum } from "@/core/enums";
-import type{ RadioChangeEvent } from "ant-design-vue/es/radio/interface";
+import type { RadioChangeEvent } from "ant-design-vue/es/radio/interface";
 
 const { t } = useI18n();
 
 const primaryColor = useCssVar("--primary-color");
 const onChangeColor = (e: RadioChangeEvent) => {
-  primaryColor.value = (e.target as HTMLInputElement).value;
+  const selectedColor = (e.target as HTMLInputElement).value;
+  primaryColor.value = selectedColor;
+  configStore.configStorage.theme.token.colorPrimary = selectedColor;
 };
 const configStore = useConfigStore();
 
