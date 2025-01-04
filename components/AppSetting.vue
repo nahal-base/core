@@ -24,19 +24,19 @@
             @change="onChangeColor"
           >
             <RadioButton value="#3b82f6" class="!bg-[#3b82f6]"></RadioButton>
-            <RadioButton value="#ef4444" class="!bg-[#ef4444]"></RadioButton>
-            <RadioButton value="#f97316" class="!bg-[#f97316]"></RadioButton>
-            <RadioButton value="#eab308" class="!bg-[#eab308]"></RadioButton>
-            <RadioButton value="#84cc16" class="!bg-[#84cc16]"></RadioButton>
+            <!-- <RadioButton value="#ef4444" class="!bg-[#ef4444]"></RadioButton> -->
+            <!-- <RadioButton value="#f97316" class="!bg-[#f97316]"></RadioButton> -->
+            <!-- <RadioButton value="#eab308" class="!bg-[#eab308]"></RadioButton> -->
+            <!-- <RadioButton value="#84cc16" class="!bg-[#84cc16]"></RadioButton> -->
             <RadioButton value="#10b981" class="!bg-[#10b981]"></RadioButton>
             <RadioButton value="#06b6d4" class="!bg-[#06b6d4]"></RadioButton>
             <RadioButton value="#0ea5e9" class="!bg-[#0ea5e9]"></RadioButton>
             <RadioButton value="#3b82f6" class="!bg-[#3b82f6]"></RadioButton>
             <RadioButton value="#6366f1" class="!bg-[#6366f1]"></RadioButton>
-            <RadioButton value="#8b5cf6" class="!bg-[#8b5cf6]"></RadioButton>
-            <RadioButton value="#d946ef" class="!bg-[#d946ef]"></RadioButton>
-            <RadioButton value="#ec4899" class="!bg-[#ec4899]"></RadioButton>
-            <RadioButton value="#f43f5e" class="!bg-[#f43f5e]"></RadioButton>
+            <!-- <RadioButton value="#8b5cf6" class="!bg-[#8b5cf6]"></RadioButton> -->
+            <!-- <RadioButton value="#d946ef" class="!bg-[#d946ef]"></RadioButton> -->
+            <!-- <RadioButton value="#ec4899" class="!bg-[#ec4899]"></RadioButton> -->
+            <!-- <RadioButton value="#f43f5e" class="!bg-[#f43f5e]"></RadioButton> -->
           </RadioGroup>
         </FormItem>
       </Form>
